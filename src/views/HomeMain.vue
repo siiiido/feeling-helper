@@ -1,7 +1,15 @@
 <template>
-  <main>
-    <img :src="this.catUrl" alt="cat images" />
-    <img :src="this.dogUrl" alt="dog images" />
+  <main class="main">
+    <div class="img-container" v-if="this.loading">
+      <img
+        v-for="(src, index) in this.animalData"
+        :key="index"
+        :src="src.url"
+        alt="animal images"
+        class="image-box"
+      />
+    </div>
+    <div class="loading-container" v-if="!this.loading">loading</div>
   </main>
 </template>
 
@@ -12,15 +20,15 @@ export default {
   name: "HomeMain",
   data() {
     return {
-      catUrl: [],
+      loading: false,
+      animalData: [],
       catParams: {
-        limit: 1,
+        limit: 5,
         size: "full",
         format: "json",
       },
-      dogUrl: [],
       dogParams: {
-        limit: 1,
+        limit: 5,
         size: "full",
         format: "json",
       },
@@ -37,7 +45,7 @@ export default {
           { params: { limit: this.catParams.limit, size: this.catParams.size } }
         );
 
-        return res.data[0].url;
+        return res.data;
       } catch {
         console.log("axiosCatData error");
       }
@@ -52,22 +60,47 @@ export default {
           { params: { limit: this.dogParams.limit, size: this.dogParams.size } }
         );
 
-        return res.data[0].url;
+        return res.data;
       } catch {
         console.log("axiosDogData error");
+      }
+    },
+    async getAnimalData() {
+      const catDatas = await this.axiosCatData();
+      const dogDatas = await this.axiosDogData();
+
+      for (let i = 0; i < catDatas.length; i++) {
+        this.animalData.push({ url: catDatas[i].url, id: catDatas[i].id });
+        this.animalData.push({ url: dogDatas[i].url, id: dogDatas[i].id });
+        this.loading = true;
       }
     },
   },
 
   async created() {
-    const catData = await this.axiosCatData();
-    const dogData = await this.axiosDogData();
-
-    this.catUrl = catData;
-    this.dogUrl = dogData;
+    await this.getAnimalData();
   },
 };
 </script>
 <style>
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: antiquewhite;
+}
+.img-container {
+  display: flex;
+  flex-direction: column;
+  background-color: yellow;
+}
+.image-box {
+  margin-top: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+}
 </style>
 
