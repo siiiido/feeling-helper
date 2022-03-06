@@ -1,5 +1,13 @@
 <template>
-<div class="home-header">HomeHeader</div>
+  <div class="home-header">
+    <router-link to="/">
+      <button>Home</button>
+    </router-link>
+
+    <router-link to="/like">
+      <button>Like</button>
+    </router-link>
+  </div>
 </template>
 
 <script>
@@ -9,7 +17,7 @@ export default {
 </script>
 
 <style>
-.home-header{
+.home-header {
   height: 40px;
   background-color: aquamarine;
 }
