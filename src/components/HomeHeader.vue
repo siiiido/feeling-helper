@@ -1,12 +1,7 @@
 <template>
   <div class="home-header">
-    <router-link to="/">
-      <button>Home</button>
-    </router-link>
-
-    <router-link to="/like">
-      <button>Like</button>
-    </router-link>
+    <router-link to="/" >home</router-link>
+    <router-link to="/like">like</router-link>
   </div>
 </template>
 

@@ -4249,6 +4249,11 @@
   dependencies:
     "yallist" "^4.0.0"
 
+"mitt@^3.0.0":
+  "integrity" "sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ=="
+  "resolved" "https://registry.npmjs.org/mitt/-/mitt-3.0.0.tgz"
+  "version" "3.0.0"
+
 "mkdirp@^0.5.5":
   "integrity" "sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ=="
   "resolved" "https://registry.npmmirror.com/mkdirp/-/mkdirp-0.5.5.tgz"
@@ -5938,11 +5943,6 @@
   "resolved" "https://registry.npmmirror.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz"
   "version" "2.3.4"
 
-"vue-infinite-scroll@^2.0.2":
-  "integrity" "sha512-n+YghR059YmciANGJh9SsNWRi1YZEBVlODtmnb/12zI+4R72QZSWd+EuZ5mW6auEo/yaJXgxzwsuhvALVnm73A=="
-  "resolved" "https://registry.npmjs.org/vue-infinite-scroll/-/vue-infinite-scroll-2.0.2.tgz"
-  "version" "2.0.2"
-
 "vue-loader@^17.0.0":
   "integrity" "sha512-OWSXjrzIvbF2LtOUmxT3HYgwwubbfFelN8PAP9R9dwpIkj48TVioHhWWSx7W7fk+iF5cgg3CBJRxwTdtLU4Ecg=="
   "resolved" "https://registry.npmmirror.com/vue-loader/-/vue-loader-17.0.0.tgz"
@@ -5952,7 +5952,7 @@
     "hash-sum" "^2.0.0"
     "loader-utils" "^2.0.0"
 
-"vue-router@4":
+"vue-router@^4.0.13":
   "integrity" "sha512-LmXrC+BkDRLak+d5xTMgUYraT3Nj0H/vCbP+7usGvIl9Viqd1UP6AsP0i69pSbn9O0dXK/xCdp4yPw21HqV9Jw=="
   "resolved" "https://registry.npmjs.org/vue-router/-/vue-router-4.0.13.tgz"
   "version" "4.0.13"
