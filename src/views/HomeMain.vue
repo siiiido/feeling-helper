@@ -45,7 +45,7 @@ export default {
           { params: { limit: this.catParams.limit, size: this.catParams.size } }
         );
 
-        return res.data;
+        this.getAnimalData(res.data);
       } catch {
         console.log("axiosCatData error");
       }
@@ -60,25 +60,36 @@ export default {
           { params: { limit: this.dogParams.limit, size: this.dogParams.size } }
         );
 
-        return res.data;
+        this.getAnimalData(res.data);
       } catch {
         console.log("axiosDogData error");
       }
     },
-    async getAnimalData() {
-      const catDatas = await this.axiosCatData();
-      const dogDatas = await this.axiosDogData();
-
-      for (let i = 0; i < catDatas.length; i++) {
-        this.animalData.push({ url: catDatas[i].url, id: catDatas[i].id });
-        this.animalData.push({ url: dogDatas[i].url, id: dogDatas[i].id });
-        this.loading = true;
+    getAnimalData(animal) {
+      for (let i = 0; i < animal.length; i++) {
+        this.animalData.push({ url: animal[i].url, id: animal[i].id });
       }
+      this.loading = true;
+    },
+    getNextAnimalData() {
+      window.onscroll = () => {
+        let bottomOfWindow =
+          document.documentElement.scrollTop + window.innerHeight ===
+          document.documentElement.offsetHeight;
+        if (bottomOfWindow) {
+          this.axiosCatData();
+          this.axiosDogData();
+        }
+      };
     },
   },
 
-  async created() {
-    await this.getAnimalData();
+  created() {
+    this.axiosCatData();
+    this.axiosDogData();
+  },
+  mounted() {
+    this.getNextAnimalData();
   },
 };
 </script>
