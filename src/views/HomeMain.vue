@@ -1,15 +1,16 @@
 <template>
   <main class="main">
-    <div class="img-container" v-if="this.loading">
+    <div class="img-container" v-if="loading">
       <img
-        v-for="(src, index) in this.animalData"
+        v-for="(src, index) in animalData"
         :key="index"
         :src="src.url"
         alt="animal images"
         class="image-box"
+        @click="sendingLikeData(src)"
       />
     </div>
-    <div class="loading-container" v-if="!this.loading">loading</div>
+    <div class="loading-container" v-if="!loading">loading</div>
   </main>
 </template>
 
@@ -32,9 +33,13 @@ export default {
         size: "full",
         format: "json",
       },
+      likeDataHomeMain: [],
     };
   },
   methods: {
+    sendingLikeData(data) {
+      this.likeDataHomeMain.push({ ...data });
+    },
     async axiosCatData() {
       try {
         const CAT_API_KEY = process.env.VUE_APP_CAT_KEY;
@@ -83,13 +88,15 @@ export default {
       };
     },
   },
-
   created() {
     this.axiosCatData();
     this.axiosDogData();
   },
   mounted() {
     this.getNextAnimalData();
+  },
+  unmounted() {
+    this.$store.commit("add", this.likeDataHomeMain);
   },
 };
 </script>
@@ -112,6 +119,8 @@ export default {
   width: 500px;
   height: 300px;
   object-fit: cover;
+  cursor: pointer;
+  border-radius: 20px;
 }
 </style>
 
