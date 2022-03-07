@@ -5,6 +5,7 @@
       :key="index"
       :src="src.url"
       alt="animal data"
+      @click="deleteImg(src)"
     />
   </div>
 </template>
@@ -16,6 +17,11 @@ export default {
     return {
       likeDataAnimal: [],
     };
+  },
+  methods: {
+    deleteImg(src){
+      this.$store.commit("minus", src.id)
+    }
   },
   mounted() {
     this.likeDataAnimal.push(...this.$store.state.likeData);

@@ -10,6 +10,12 @@ const store = createStore({
     add(state, payload) {
       state.likeData = [...payload];
     },
+    minus(state, payload){
+      let filterArr = state.likeData.filter(function(data) {
+        return data.id != payload
+      })
+      state.likeData = [...filterArr];
+    }
   },
 });
 
