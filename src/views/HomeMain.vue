@@ -33,12 +33,16 @@ export default {
         size: "full",
         format: "json",
       },
-      likeDataHomeMain: [],
     };
   },
   methods: {
+    /*
+      이미지 클릭하면 하트 생기기 & vuex에 등록되고
+      1. 같은 이미지 한 번 더 누르면 사라지고 & vuex에서 사라짐
+      2. 다른 이미지 누르면 하트 생기기 & vuex에 등록
+    */
     sendingLikeData(data) {
-      this.likeDataHomeMain.push({ ...data });
+      this.$store.commit("add", data);
     },
     async axiosCatData() {
       try {
@@ -94,9 +98,6 @@ export default {
   },
   mounted() {
     this.getNextAnimalData();
-  },
-  unmounted() {
-    this.$store.commit("add", this.likeDataHomeMain);
   },
 };
 </script>
